@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UniPay Home</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f5f9ff;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#0a2a66;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h2{
+    color:white;
+    margin:0;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:5px;
+}
+
+.navbar a:hover{
+    background:#1f4fd8;
+}
+
+/* MAIN CONTAINER */
+.container{
+    padding:30px;
+}
+
+/* MAIN OPTIONS */
+.main-options{
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.main-card{
+    flex:1;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.main-card:hover{
+    box-shadow:0 8px 18px rgba(31,79,216,0.4);
+}
+
+.main-card img{
+    width:60px;
+}
+
+/* SUB CARDS */
+.sub-cards{
+    display:none;
+    margin-top:15px;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.sub-cards.active{
+    display:block;
+}
+
+.sub-card{
+    display:inline-block;
+    width:140px;
+    background:white;
+    margin-right:15px;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.sub-card:hover{
+    box-shadow:0 8px 18px rgba(31,79,216,0.5);
+    transform:translateY(-4px);
+}
+
+.sub-card img{
+    width:40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>UniPay</h2>
+    <div>
+        <span style="color:white; margin-right:15px;">
+    Welcome, <b>{{ session.get("user") }}</b>
+</span>
+
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">About</a>
+        <a href="#" onclick="confirmLogout()">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- MAIN OPTIONS -->
+<div class="main-options">
+
+    <div class="main-card" onclick="toggle('send')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041878.png">
+        <h3>Send Money</h3>
+    </div>
+
+    <div class="main-card" onclick="toggle('receive')">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
+        <h3>Receive Money</h3>
+    </div>
+
+    <div class="main-card" onclick="toggle('balance')">
+        <img src="https://cdn-icons-png.flaticon.com/512/483/483361.png">
+        <h3>Check Balance</h3>
+    </div>
+
+</div>
+
+<!-- SEND MONEY OPTIONS -->
+<div id="send" class="sub-cards">
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png">
+        <p>To Mobile</p>
+    </div>
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/483/483361.png">
+        <p>To Bank</p>
+    </div>
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png">
+        <p>UniPay User</p>
+    </div>
+</div>
+
+<!-- RECEIVE MONEY OPTIONS -->
+<div id="receive" class="sub-cards">
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/159/159832.png">
+        <p>QR Code</p>
+    </div>
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png">
+        <p>Request</p>
+    </div>
+</div>
+
+<!-- BALANCE OPTIONS -->
+<div id="balance" class="sub-cards">
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png">
+        <p>Wallet</p>
+    </div>
+    <div class="sub-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png">
+        <p>Bank</p>
+    </div>
+</div>
+
+</div>
+
+<script>
+function toggle(id){
+    document.querySelectorAll('.sub-cards').forEach(x => x.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+</script>
+
+<script>
+function confirmLogout() {
+    if (confirm("Are you sure you want to logout?")) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+
+</body>
+</html>
