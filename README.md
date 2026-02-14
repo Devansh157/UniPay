@@ -93,7 +93,6 @@ cd UniPay
 pip install flask
 ```
 
-*(Add more if you later include them)*
 
 ### 3️⃣ Run the Application
 
